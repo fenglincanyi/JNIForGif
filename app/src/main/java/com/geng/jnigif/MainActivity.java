@@ -13,7 +13,6 @@ import android.widget.Toast;
 
 import com.gif.encoder.GifEncoder;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 

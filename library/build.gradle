@@ -48,7 +48,7 @@ publish {
     userOrg = 'canyifenglin'
     groupId = 'com.gif'
     artifactId = 'jnigif'
-    publishVersion = '0.1.1'
+    publishVersion = '0.1.2'
     desc = 'Android Gif Create by JNI, faster, better!!!'
     website = 'https://github.com/fenglincanyi/JNIForGif'
 }

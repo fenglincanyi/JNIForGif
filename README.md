@@ -3,8 +3,26 @@
 Create GIF By JNI Method
 
 ### Useage
+project/build.gradle
+```gradle
+buildscript {
+    repositories {
+        ...
+        maven { url "https://dl.bintray.com/canyifenglin/maven" }
+    }
+}
 
-#### must be in work thread
+allprojects {
+    repositories {
+        ...
+        maven { url "https://dl.bintray.com/canyifenglin/maven" }
+    }
+}
+```
+app/build.gradle
+```gradle
+implementation 'com.gif:jnigif:0.1.2'
+```
 
 GIF quality：
 * FAST
@@ -31,8 +49,8 @@ try {
 }
 ```
 
+#### use must be in work thread
 
-----
 ## LICENSE
 
 Apache License 2.0
