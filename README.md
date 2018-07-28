@@ -30,3 +30,9 @@ try {
 } catch (Exception e) {
 }
 ```
+
+
+----
+## LICENSE
+
+Apache License 2.0
