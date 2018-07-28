@@ -4,21 +4,16 @@ import android.Manifest;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.gif.encode.GifEncoder;
+import com.gif.encoder.GifEncoder;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.InputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -64,9 +59,20 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.sample_text).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (createGif()) {
-                    Toast.makeText(MainActivity.this, "GIF create success!!!", Toast.LENGTH_LONG).show();
-                }
+                new Thread() {
+                    @Override
+                    public void run() {
+                        if (createGif()) {
+
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Toast.makeText(MainActivity.this, "GIF create success!!!", Toast.LENGTH_LONG).show();
+                                }
+                            });
+                        }
+                    }
+                }.start();
             }
         });
     }

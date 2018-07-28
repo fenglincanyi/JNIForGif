@@ -9,29 +9,22 @@ android {
         versionCode 1
         versionName "1.0"
 
-        externalNativeBuild {
-            cmake {
-                arguments "-DANDROID_ABI=armeabi-v7a",
-                        "-DCMAKE_BUILD_TYPE=Release",
-                        "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=../../../../so"
-                cppFlags "-frtti -fexceptions"
-            }
+        ndk {
+            abiFilters 'armeabi-v7a'
         }
     }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-    externalNativeBuild {
-        cmake {
-            path "CMakeLists.txt"
         }
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.1.1'
+
+    implementation project(':library')
+    //    compile 'com.gif:jnigif:0.1.1'
 }

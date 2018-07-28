@@ -1,4 +1,4 @@
-package com.gif.encode;
+package com.gif.encoder;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -132,9 +132,9 @@ public class GifEncoder {
     // ============================================ jni 接口 ============================================
 
 
-    public native long nativeInit(int dstWidth, int dstHeight, String outputPath, int encodeType, int threadCount);
+    private native long nativeInit(int dstWidth, int dstHeight, String outputPath, int encodeType, int threadCount);
 
-    public native boolean nativeEncodeFrame(long initFlag, Bitmap bitmap, int delay);
+    private native boolean nativeEncodeFrame(long initFlag, Bitmap bitmap, int delay);
 
-    public native void nativeClose(long initFlag);
+    private native void nativeClose(long initFlag);
 }
