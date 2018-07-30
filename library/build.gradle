@@ -40,7 +40,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:27.1.1'
 }
 
 
@@ -48,7 +47,7 @@ publish {
     userOrg = 'canyifenglin'
     groupId = 'com.gif'
     artifactId = 'jnigif'
-    publishVersion = '0.1.2'
+    publishVersion = '0.1.3'
     desc = 'Android Gif Create by JNI, faster, better!!!'
     website = 'https://github.com/fenglincanyi/JNIForGif'
 }

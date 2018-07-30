@@ -2,7 +2,7 @@ package com.gif.encoder;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.annotation.WorkerThread;
+import android.os.Looper;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -66,8 +66,8 @@ public class GifEncoder {
      * @param delay   frame 之间的间隔
      * @return true: encode success
      */
-    @WorkerThread
-    public boolean encodeFrame(List<Bitmap> bitmaps, int delay) {
+    public boolean encodeFrame(List<Bitmap> bitmaps, int delay) throws Exception {
+        checkThread();
         boolean result;
         for (Bitmap bitmap : bitmaps) {
             Bitmap tmp = bitmap;
@@ -90,8 +90,7 @@ public class GifEncoder {
     /**
      * @see #encodeFrame(List, int)
      */
-    @WorkerThread
-    public boolean encodeFrame(File[] files, int delay) {
+    public boolean encodeFrame(File[] files, int delay) throws Exception {
         List<Bitmap> bitmaps = new ArrayList<>();
         for (File file : files) {
             Bitmap bitmap;
@@ -106,6 +105,12 @@ public class GifEncoder {
         }
 
         return !bitmaps.isEmpty() && encodeFrame(bitmaps, delay);
+    }
+
+    private void checkThread() throws Exception {
+        if (Looper.getMainLooper() == Looper.myLooper()) {
+            throw new Exception("encodeFrame must in workThread");
+        }
     }
 
     /**
